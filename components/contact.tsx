@@ -80,7 +80,7 @@ export default function Contact() {
                 </div>
                 <div>
                   <h4 className="font-medium text-gray-900">Teléfono</h4>
-                  <p className="text-gray-600">(555) 123-4567</p>
+                  <p className="text-gray-600">633199788</p>
                 </div>
               </div>
 
@@ -101,9 +101,9 @@ export default function Contact() {
                 <div>
                   <h4 className="font-medium text-gray-900">Dirección</h4>
                   <p className="text-gray-600">
-                    123 Avenida Construcción, Suite 101
+                    Carrer Sant Miquel
                     <br />
-                    Ciudad Ejemplo, España 12345
+                    Tarragona, España 43004
                   </p>
                 </div>
               </div>
@@ -183,7 +183,7 @@ export default function Contact() {
                       value={formState.phone}
                       onChange={handleChange}
                       required
-                      placeholder="(555) 123-4567"
+                      placeholder="777 88 99 00"
                     />
                   </div>
 
