@@ -2,9 +2,8 @@ import type { Metadata } from 'next'
 import './globals.css'
 
 export const metadata: Metadata = {
-  title: 'v0 App',
-  description: 'Created with v0',
-  generator: 'v0.dev',
+  title: 'TarragonaPladur',
+  description: 'Ofrecemos servicios excepcionales de instalación, reparación y acabado de pladur con precisión y cuidado para proyectos residenciales y comerciales.',
 }
 
 export default function RootLayout({
