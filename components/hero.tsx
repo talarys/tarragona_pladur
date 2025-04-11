@@ -67,7 +67,7 @@ export default function Hero() {
             <div className="absolute inset-0 bg-green-100 rounded-tl-3xl rounded-br-3xl -rotate-3 transform-gpu"></div>
             <div className="absolute inset-0 overflow-hidden rounded-tl-3xl rounded-br-3xl rotate-3 transform-gpu">
               <Image
-                src="/placeholder.svg?height=600&width=800"
+                src="/heroBackground.webp?height=600&width=800"
                 alt="Instalación profesional de paneles de yeso"
                 fill
                 className="object-cover"

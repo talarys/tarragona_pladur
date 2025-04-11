@@ -30,7 +30,7 @@ export default function About() {
             <div className="absolute top-0 left-0 w-3/4 h-3/4 bg-green-600/10 rounded-tl-3xl rounded-br-3xl"></div>
             <div className="absolute bottom-0 right-0 w-3/4 h-3/4 overflow-hidden rounded-tl-3xl rounded-br-3xl border-8 border-white shadow-xl">
               <Image
-                src="/placeholder.svg?height=600&width=800"
+                src="/heroBackground2.webp?height=600&width=800"
                 alt="Equipo profesional de paneles de yeso"
                 fill
                 className="object-cover"

@@ -11,37 +11,37 @@ const projects = [
   {
     title: "Renovación de Casa Moderna",
     category: "Residencial",
-    image: "/placeholder.svg?height=600&width=800",
+    image: "/luxury.webp?height=600&width=800",
     description: "Instalación completa de pladur para un proyecto de renovación de casa moderna.",
   },
   {
     title: "Complejo de Oficinas",
     category: "Comercial",
-    image: "/placeholder.svg?height=600&width=800",
+    image: "/office.webp?height=600&width=800",
     description: "Instalación y acabado de pladur para un nuevo complejo de oficinas.",
   },
   {
     title: "Diseño de Pared Curva",
     category: "Trabajo Personalizado",
-    image: "/placeholder.svg?height=600&width=800",
+    image: "/curve.webp?height=600&width=800",
     description: "Instalación personalizada de pladur curvo para un diseño arquitectónico único.",
   },
   {
     title: "Restauración por Daños de Agua",
     category: "Reparaciones",
-    image: "/placeholder.svg?height=600&width=800",
+    image: "/bathroom.webp?height=600&width=800",
     description: "Reparación y restauración de pladur después de daños significativos por agua.",
   },
   {
     title: "Complejo de Apartamentos de Lujo",
     category: "Comercial",
-    image: "/placeholder.svg?height=600&width=800",
+    image: "/luxury2.webp?height=600&width=800",
     description: "Soluciones completas de pladur para un complejo de apartamentos de lujo.",
   },
   {
     title: "Techo Texturizado",
     category: "Trabajo Personalizado",
-    image: "/placeholder.svg?height=600&width=800",
+    image: "/roof.webp?height=600&width=800",
     description: "Aplicación de textura personalizada en techo para un proyecto residencial.",
   },
 ]
