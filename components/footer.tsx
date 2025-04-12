@@ -101,9 +101,9 @@ export default function Footer() {
           <div>
             <h3 className="text-lg font-semibold mb-4">Contáctenos</h3>
             <address className="not-italic text-gray-400 space-y-2">
-              <p>Carrer Sant Miquel Tarragona, España 43004</p>
-              <p>Teléfono: 633199788</p>
-              <p>Correo: info@TarragonaPladur.com</p>
+              <p>Tarragona, España</p>
+              <p>Teléfono: 608 674 889</p>
+              <p>Correo: info@tarragonapladur.com</p>
             </address>
           </div>
         </div>

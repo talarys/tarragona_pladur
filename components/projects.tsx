@@ -11,7 +11,7 @@ const projects = [
   {
     title: "Renovación de Casa Moderna",
     category: "Residencial",
-    image: "/luxury.webp?height=600&width=800",
+    image: "/modern.webp?height=600&width=800",
     description: "Instalación completa de pladur para un proyecto de renovación de casa moderna.",
   },
   {
@@ -35,7 +35,7 @@ const projects = [
   {
     title: "Complejo de Apartamentos de Lujo",
     category: "Comercial",
-    image: "/luxury2.webp?height=600&width=800",
+    image: "/luxury.webp?height=600&width=800",
     description: "Soluciones completas de pladur para un complejo de apartamentos de lujo.",
   },
   {

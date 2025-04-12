@@ -2,9 +2,7 @@
 
 import type React from "react"
 
-import {
-  Mail, Phone, MessageCircle
-} from "lucide-react"
+import { Mail, Phone, MessageCircle } from "lucide-react"
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
 import { Button } from "@/components/ui/button"
 import { useState } from "react"
@@ -18,7 +16,7 @@ export default function ContactModal({ trigger, className }: ContactModalProps) 
   const [open, setOpen] = useState(false)
 
   const phoneNumber = "+34633199788"
-  const email = "info@TarragonaPladur.com"
+  const email = "info@tarragonapladur.com"
   const whatsappMessage = "Hola, me gustaría obtener información sobre sus servicios de pladur."
 
   const whatsappLink = `https://wa.me/${phoneNumber.replace(/\+/g, "")}?text=${encodeURIComponent(whatsappMessage)}`
@@ -40,6 +38,7 @@ export default function ContactModal({ trigger, className }: ContactModalProps) 
         </DialogHeader>
         <div className="grid gap-6 py-4">
           <p className="text-center text-muted-foreground">Elija su método de contacto preferido</p>
+
           <div className="grid gap-4">
             <a
               href={whatsappLink}
@@ -65,7 +64,7 @@ export default function ContactModal({ trigger, className }: ContactModalProps) 
               </div>
               <div>
                 <h3 className="font-medium">Teléfono</h3>
-                <p className="text-sm text-muted-foreground">{phoneNumber}</p>
+                <p className="text-sm text-muted-foreground">608 674 889</p>
               </div>
             </a>
 

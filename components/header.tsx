@@ -28,7 +28,7 @@ export default function Header() {
     >
       <div className="container mx-auto px-4 flex justify-between items-center">
         <Link href="/" className="flex items-center">
-          <span className="text-2xl font-bold text-gray-900">
+          <span className={`text-2xl font-bold ${isScrolled ? "text-gray-900" : "text-white"}`}>
             Tarragona<span className="text-green-600">Pladur</span>
           </span>
         </Link>
@@ -39,7 +39,9 @@ export default function Header() {
             <Link
               key={item}
               href={`#${item.toLowerCase()}`}
-              className="text-gray-700 hover:text-green-600 font-medium transition-colors"
+              className={`font-medium transition-colors ${
+                isScrolled ? "text-gray-700 hover:text-green-600" : "text-white hover:text-green-400"
+              }`}
             >
               {item}
             </Link>
@@ -59,13 +61,18 @@ export default function Header() {
         <div className="md:hidden flex items-center gap-4">
           <ContactModal
             trigger={
-              <button className="text-gray-700 hover:text-green-600 transition-colors">
+              <button
+                className={`transition-colors ${isScrolled ? "text-gray-700 hover:text-green-600" : "text-white hover:text-green-400"}`}
+              >
                 <Phone className="h-5 w-5" />
               </button>
             }
           />
 
-          <button className="text-gray-700 flex items-center" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
+          <button
+            className={`flex items-center ${isScrolled ? "text-gray-700" : "text-white"}`}
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          >
             {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
         </div>

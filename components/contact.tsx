@@ -7,49 +7,69 @@ import { useInView } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
-import { Phone, Mail, MapPin, Clock, Send } from "lucide-react"
+import { Phone, Mail, MapPin, Clock, Send, CheckCircle, AlertCircle } from "lucide-react"
 import { cn } from "@/lib/utils"
+import { submitContactForm, type ContactFormData } from "@/app/actions"
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
 
 export default function Contact() {
-  const [formState, setFormState] = useState({
+  const [formState, setFormState] = useState<ContactFormData>({
     name: "",
     email: "",
     phone: "",
     message: "",
-    service: "Instalación de Pladur",
   })
+
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isSubmitted, setIsSubmitted] = useState(false)
+  const [formErrors, setFormErrors] = useState<Record<string, string>>({})
+  const [formError, setFormError] = useState<string | null>(null)
 
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, amount: 0.2 })
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target
     setFormState((prev) => ({ ...prev, [name]: value }))
+
+    // Limpiar error del campo cuando el usuario comienza a escribir
+    if (formErrors[name]) {
+      setFormErrors((prev) => {
+        const newErrors = { ...prev }
+        delete newErrors[name]
+        return newErrors
+      })
+    }
   }
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setIsSubmitting(true)
+    setFormError(null)
 
-    // Simulate form submission
-    setTimeout(() => {
+    try {
+      const result = await submitContactForm(formState)
+
+      if (result.success) {
+        setIsSubmitted(true)
+        setFormState({
+          name: "",
+          email: "",
+          phone: "",
+          message: "",
+        })
+        setFormErrors({})
+      } else if (result.fieldErrors) {
+        setFormErrors(result.fieldErrors)
+      } else if (result.error) {
+        setFormError(result.error)
+      }
+    } catch (error) {
+      console.error("Error al enviar el formulario:", error)
+      setFormError("Ha ocurrido un error inesperado. Por favor, inténtelo de nuevo más tarde.")
+    } finally {
       setIsSubmitting(false)
-      setIsSubmitted(true)
-      setFormState({
-        name: "",
-        email: "",
-        phone: "",
-        message: "",
-        service: "Instalación de Pladur",
-      })
-
-      // Reset success message after 5 seconds
-      setTimeout(() => {
-        setIsSubmitted(false)
-      }, 5000)
-    }, 1500)
+    }
   }
 
   return (
@@ -80,7 +100,7 @@ export default function Contact() {
                 </div>
                 <div>
                   <h4 className="font-medium text-gray-900">Teléfono</h4>
-                  <p className="text-gray-600">633199788</p>
+                  <p className="text-gray-600">608 674 889</p>
                 </div>
               </div>
 
@@ -90,7 +110,7 @@ export default function Contact() {
                 </div>
                 <div>
                   <h4 className="font-medium text-gray-900">Correo Electrónico</h4>
-                  <p className="text-gray-600">info@TarragonaPladur.com</p>
+                  <p className="text-gray-600">info@tarragonapladur.com</p>
                 </div>
               </div>
 
@@ -101,9 +121,7 @@ export default function Contact() {
                 <div>
                   <h4 className="font-medium text-gray-900">Dirección</h4>
                   <p className="text-gray-600">
-                    Carrer Sant Miquel
-                    <br />
-                    Tarragona, España 43004
+                    Tarragona , España
                   </p>
                 </div>
               </div>
@@ -135,13 +153,24 @@ export default function Contact() {
             <h3 className="text-2xl font-semibold text-gray-900 mb-6">Solicitar un Presupuesto</h3>
 
             {isSubmitted ? (
-              <div className="bg-green-50 border border-green-200 rounded-lg p-4 text-green-800 text-center">
-                <p className="font-medium">¡Gracias por su mensaje!</p>
-                <p className="text-sm mt-1">Nos pondremos en contacto con usted lo antes posible.</p>
-              </div>
+              <Alert className="bg-green-50 border-green-200 text-green-800">
+                <CheckCircle className="h-4 w-4 text-green-600" />
+                <AlertTitle className="text-green-800 font-medium">¡Mensaje enviado con éxito!</AlertTitle>
+                <AlertDescription className="text-green-700">
+                  Gracias por contactarnos. Nos pondremos en contacto con usted lo antes posible.
+                </AlertDescription>
+              </Alert>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-4">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {formError && (
+                  <Alert variant="destructive">
+                    <AlertCircle className="h-4 w-4" />
+                    <AlertTitle>Error</AlertTitle>
+                    <AlertDescription>{formError}</AlertDescription>
+                  </Alert>
+                )}
+
+                <div className="grid grid-cols-1 gap-4">
                   <div>
                     <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
                       Nombre Completo
@@ -153,7 +182,9 @@ export default function Contact() {
                       onChange={handleChange}
                       required
                       placeholder="Juan Pérez"
+                      className={formErrors.name ? "border-red-500" : ""}
                     />
+                    {formErrors.name && <p className="text-red-500 text-xs mt-1">{formErrors.name}</p>}
                   </div>
 
                   <div>
@@ -168,45 +199,26 @@ export default function Contact() {
                       onChange={handleChange}
                       required
                       placeholder="juan@ejemplo.com"
+                      className={formErrors.email ? "border-red-500" : ""}
                     />
+                    {formErrors.email && <p className="text-red-500 text-xs mt-1">{formErrors.email}</p>}
                   </div>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div>
-                    <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-1">
-                      Número de Teléfono
-                    </label>
-                    <Input
-                      id="phone"
-                      name="phone"
-                      value={formState.phone}
-                      onChange={handleChange}
-                      required
-                      placeholder="777 88 99 00"
-                    />
-                  </div>
-
-                  <div>
-                    <label htmlFor="service" className="block text-sm font-medium text-gray-700 mb-1">
-                      Servicio Necesario
-                    </label>
-                    <select
-                      id="service"
-                      name="service"
-                      value={formState.service}
-                      onChange={handleChange}
-                      className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
-                    >
-                      <option>Instalación de Pladur</option>
-                      <option>Reparación de Pladur</option>
-                      <option>Acabado de Pladur</option>
-                      <option>Aplicación de Texturas</option>
-                      <option>Eliminación de Textura Popcorn</option>
-                      <option>Soluciones Personalizadas</option>
-                      <option>Otro</option>
-                    </select>
-                  </div>
+                <div>
+                  <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-1">
+                    Número de Teléfono
+                  </label>
+                  <Input
+                    id="phone"
+                    name="phone"
+                    value={formState.phone}
+                    onChange={handleChange}
+                    required
+                    placeholder="608 674 889"
+                    className={formErrors.phone ? "border-red-500" : ""}
+                  />
+                  {formErrors.phone && <p className="text-red-500 text-xs mt-1">{formErrors.phone}</p>}
                 </div>
 
                 <div>
@@ -221,7 +233,9 @@ export default function Contact() {
                     required
                     placeholder="Por favor describa su proyecto y cualquier requisito específico..."
                     rows={4}
+                    className={formErrors.message ? "border-red-500" : ""}
                   />
+                  {formErrors.message && <p className="text-red-500 text-xs mt-1">{formErrors.message}</p>}
                 </div>
 
                 <Button type="submit" className="w-full bg-green-600 hover:bg-green-700" disabled={isSubmitting}>
