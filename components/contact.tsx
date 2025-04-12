@@ -110,7 +110,7 @@ export default function Contact() {
                 </div>
                 <div>
                   <h4 className="font-medium text-gray-900">Correo Electrónico</h4>
-                  <p className="text-gray-600">info@tarragonapladur.com</p>
+                  <p className="text-gray-600">tarragonapladur@gmail.com</p>
                 </div>
               </div>
 
