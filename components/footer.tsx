@@ -103,7 +103,7 @@ export default function Footer() {
             <address className="not-italic text-gray-400 space-y-2">
               <p>Tarragona, España</p>
               <p>Teléfono: 608 674 889</p>
-              <p>Correo: info@tarragonapladur.com</p>
+              <p>Correo: tarragonapladur@gmail.com</p>
             </address>
           </div>
         </div>

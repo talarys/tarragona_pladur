@@ -16,7 +16,7 @@ export default function ContactModal({ trigger, className }: ContactModalProps) 
   const [open, setOpen] = useState(false)
 
   const phoneNumber = "+34608674889"
-  const email = "info@tarragonapladur.com"
+  const email = "tarragonapladur@gmail.com"
   const whatsappMessage = "Hola, me gustaría obtener información sobre sus servicios de pladur."
 
   const whatsappLink = `https://wa.me/${phoneNumber.replace(/\+/g, "")}?text=${encodeURIComponent(whatsappMessage)}`
