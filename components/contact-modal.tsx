@@ -15,7 +15,7 @@ interface ContactModalProps {
 export default function ContactModal({ trigger, className }: ContactModalProps) {
   const [open, setOpen] = useState(false)
 
-  const phoneNumber = "+34633199788"
+  const phoneNumber = "+34608674889"
   const email = "info@tarragonapladur.com"
   const whatsappMessage = "Hola, me gustaría obtener información sobre sus servicios de pladur."
 
