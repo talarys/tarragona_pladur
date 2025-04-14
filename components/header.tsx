@@ -39,9 +39,8 @@ export default function Header() {
             <Link
               key={item}
               href={`#${item.toLowerCase()}`}
-              className={`font-medium transition-colors ${
-                isScrolled ? "text-gray-700 hover:text-green-600" : "text-white hover:text-green-400"
-              }`}
+              className={`font-medium transition-colors ${isScrolled ? "text-gray-700 hover:text-green-600" : "text-white hover:text-green-400"
+                }`}
             >
               {item}
             </Link>
@@ -49,7 +48,9 @@ export default function Header() {
 
           <ContactModal
             trigger={
-              <button className="bg-green-600 text-white px-4 py-2 rounded-md hover:bg-green-700 transition-colors flex items-center gap-2">
+              <button
+                aria-label="Contacto"
+                className="bg-green-600 text-white px-4 py-2 rounded-md hover:bg-green-700 transition-colors flex items-center gap-2">
                 <Phone className="h-4 w-4" />
                 <span>Contacto</span>
               </button>
@@ -62,6 +63,7 @@ export default function Header() {
           <ContactModal
             trigger={
               <button
+                aira-label="Contacto"
                 className={`transition-colors ${isScrolled ? "text-gray-700 hover:text-green-600" : "text-white hover:text-green-400"}`}
               >
                 <Phone className="h-5 w-5" />
@@ -70,6 +72,7 @@ export default function Header() {
           />
 
           <button
+            aria-label="Menú"
             className={`flex items-center ${isScrolled ? "text-gray-700" : "text-white"}`}
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           >
