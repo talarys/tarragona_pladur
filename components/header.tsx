@@ -63,7 +63,7 @@ export default function Header() {
           <ContactModal
             trigger={
               <button
-                aira-label="Contacto"
+                aria-label="Contacto"
                 className={`transition-colors ${isScrolled ? "text-gray-700 hover:text-green-600" : "text-white hover:text-green-400"}`}
               >
                 <Phone className="h-5 w-5" />
